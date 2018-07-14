@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.send_notification:
-                sendBoardCast();
+                sendNotification();
                 break;
             case R.id.send_boardCast:
                 sendBoardCast();
@@ -72,6 +72,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), pendingIntentBoardCast);
+
+    }
+
+    /**
+     * 发送通知
+     *
+     */
+    private void sendNotification() {
+
+        Intent intentActivity = new Intent(this, NotificationJumpActivity.class);
+
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this)
+                        .setContentText("Hello World")
+                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                        .setContentTitle("66");
+
+        //添加返回栈，使按返回键后，不会退出，而是跳转到主界面
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(NotificationJumpActivity.class);
+        stackBuilder.addNextIntent(intentActivity);
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        builder.setContentIntent(pendingIntent);
+        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        Log.i("ttss", "sendNotification: 222222");
+        notificationManager.notify(1, builder.build());
+
 
     }
 
