@@ -14,6 +14,9 @@ import lh.cn.edu.henu.upto.R;
 import lh.cn.edu.henu.upto.activity.MainActivity;
 import lh.cn.edu.henu.upto.activity.NotificationJumpActivity;
 
+/**
+ * by @author lihao
+ */
 public class MyBoardCastReceiver extends BroadcastReceiver {
 
     @Override
@@ -38,7 +41,7 @@ public class MyBoardCastReceiver extends BroadcastReceiver {
                         .setContentTitle("66");
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        //stackBuilder.addParentStack(MainActivity.class);
+        stackBuilder.addParentStack(NotificationJumpActivity.class);
         stackBuilder.addNextIntent(intentActivity);
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);

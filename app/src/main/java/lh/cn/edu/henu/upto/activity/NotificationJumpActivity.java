@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import lh.cn.edu.henu.upto.R;
 
+/**
+ * by @author lihao
+ */
 public class NotificationJumpActivity extends AppCompatActivity {
 
     @Override
