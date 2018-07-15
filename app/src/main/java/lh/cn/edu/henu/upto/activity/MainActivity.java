@@ -1,11 +1,14 @@
 package lh.cn.edu.henu.upto.activity;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +16,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.nio.channels.Channel;
 import java.util.Calendar;
 
 import lh.cn.edu.henu.upto.R;
+import lh.cn.edu.henu.upto.UpTo;
 import lh.cn.edu.henu.upto.receiver.MyBoardCastReceiver;
 
 /**
@@ -81,26 +86,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void sendNotification() {
 
-        Intent intentActivity = new Intent(this, NotificationJumpActivity.class);
-
         NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(this)
+                new NotificationCompat.Builder(this, UpTo.NOTIFICATION_CHANNEL_ID_IMMEDIATELY)
                         .setContentText("Hello World")
                         .setSmallIcon(R.drawable.ic_launcher_foreground)
-                        .setContentTitle("66");
+                        .setContentTitle("UpTo")
+                        .setChannelId(UpTo.NOTIFICATION_CHANNEL_ID_IMMEDIATELY);
 
         //添加返回栈，使按返回键后，不会退出，而是跳转到主界面
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addParentStack(NotificationJumpActivity.class);
+        Intent intentActivity = new Intent(this, NotificationJumpActivity.class);
         stackBuilder.addNextIntent(intentActivity);
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
-
         builder.setContentIntent(pendingIntent);
+
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        Log.i("ttss", "sendNotification: 222222");
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+            String id = UpTo.NOTIFICATION_CHANNEL_ID_IMMEDIATELY;
+            CharSequence name = UpTo.NOTIFICATION_CHANNEL_ID_IMMEDIATELY;
+            String description = "the notification is immediately send";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+            mChannel.setDescription(description);
+            mChannel.enableLights(true);
+            mChannel.setLightColor(Color.RED);
+            mChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(mChannel);
+        }
         notificationManager.notify(1, builder.build());
 
-
     }
+
+
 
 }
