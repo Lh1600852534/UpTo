@@ -1,16 +1,20 @@
 package lh.cn.edu.henu.upto.receiver;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
 import lh.cn.edu.henu.upto.R;
+import lh.cn.edu.henu.upto.UpTo;
 import lh.cn.edu.henu.upto.activity.MainActivity;
 import lh.cn.edu.henu.upto.activity.NotificationJumpActivity;
 
@@ -35,10 +39,11 @@ public class MyBoardCastReceiver extends BroadcastReceiver {
         Intent intentActivity = new Intent(context, NotificationJumpActivity.class);
 
         NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(context)
+                new NotificationCompat.Builder(context, UpTo.NOTIFICATION_CHANNEL_ID_DELAY)
                         .setContentText("Hello World")
                         .setSmallIcon(R.drawable.ic_launcher_foreground)
-                        .setContentTitle("66");
+                        .setContentTitle("UpTo")
+                        .setChannelId(UpTo.NOTIFICATION_CHANNEL_ID_DELAY);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(NotificationJumpActivity.class);
@@ -46,6 +51,21 @@ public class MyBoardCastReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+            String id = UpTo.NOTIFICATION_CHANNEL_ID_DELAY;
+            CharSequence name = UpTo.NOTIFICATION_CHANNEL_ID_DELAY;
+            String description = "the notification is delay send";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+
+            NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+            mChannel.setDescription(description);
+            mChannel.enableLights(true);
+            mChannel.setLightColor(Color.BLUE);
+            mChannel.enableVibration(false);
+            notificationManager.createNotificationChannel(mChannel);
+        }
         notificationManager.notify(0, builder.build());
 
 
