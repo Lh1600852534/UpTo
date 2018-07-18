@@ -17,6 +17,7 @@ import lh.cn.edu.henu.upto.R;
 import lh.cn.edu.henu.upto.UpTo;
 import lh.cn.edu.henu.upto.activity.MainActivity;
 import lh.cn.edu.henu.upto.activity.NotificationJumpActivity;
+import lh.cn.edu.henu.upto.notification.NotificationChannelFactory;
 
 /**
  * by @author lihao
@@ -38,6 +39,8 @@ public class MyBoardCastReceiver extends BroadcastReceiver {
 
         Intent intentActivity = new Intent(context, NotificationJumpActivity.class);
 
+        //确保通知渠道存在
+        NotificationChannelFactory.isNotificationChannelDelay(context);
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context, UpTo.NOTIFICATION_CHANNEL_ID_DELAY)
                         .setContentText("Hello World")
@@ -51,21 +54,6 @@ public class MyBoardCastReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-
-            String id = UpTo.NOTIFICATION_CHANNEL_ID_DELAY;
-            CharSequence name = UpTo.NOTIFICATION_CHANNEL_ID_DELAY;
-            String description = "the notification is delay send";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-
-            NotificationChannel mChannel = new NotificationChannel(id, name, importance);
-            mChannel.setDescription(description);
-            mChannel.enableLights(true);
-            mChannel.setLightColor(Color.BLUE);
-            mChannel.enableVibration(false);
-            notificationManager.createNotificationChannel(mChannel);
-        }
         notificationManager.notify(0, builder.build());
 
 
