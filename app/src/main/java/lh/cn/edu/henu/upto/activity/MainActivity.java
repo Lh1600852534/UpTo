@@ -21,6 +21,7 @@ import java.util.Calendar;
 
 import lh.cn.edu.henu.upto.R;
 import lh.cn.edu.henu.upto.UpTo;
+import lh.cn.edu.henu.upto.notification.NotificationChannelFactory;
 import lh.cn.edu.henu.upto.receiver.MyBoardCastReceiver;
 
 /**
@@ -86,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void sendNotification() {
 
+        //确保通知渠道存在
+        NotificationChannelFactory.isNotificationChannelImmediate(this);
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, UpTo.NOTIFICATION_CHANNEL_ID_IMMEDIATELY)
                         .setContentText("Hello World")
@@ -102,19 +105,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         builder.setContentIntent(pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-
-            String id = UpTo.NOTIFICATION_CHANNEL_ID_IMMEDIATELY;
-            CharSequence name = UpTo.NOTIFICATION_CHANNEL_ID_IMMEDIATELY;
-            String description = "the notification is immediately send";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel mChannel = new NotificationChannel(id, name, importance);
-            mChannel.setDescription(description);
-            mChannel.enableLights(true);
-            mChannel.setLightColor(Color.RED);
-            mChannel.enableVibration(true);
-            notificationManager.createNotificationChannel(mChannel);
-        }
         notificationManager.notify(1, builder.build());
 
     }
