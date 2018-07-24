@@ -2,5 +2,6 @@
     <string name="app_name">UpTo</string>
     <string name="notification">notification</string>
     <string name="boardCast">boardCast</string>
+    <string name="asyncTask">asyncTask</string>
     <string name="notification_text">this is notification jumping</string>
 </resources>

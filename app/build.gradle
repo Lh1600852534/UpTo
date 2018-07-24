@@ -20,7 +20,7 @@ android {
     configurations.all {
         resolutionStrategy {
             //强制annotations版本号为26.1.0，解决app版本和test app不一致问题
-            force 'com.android.support:support-annotations:26.1.0'
+            //force 'com.android.support:support-annotations:27.1.1'
         }
     }
 }
