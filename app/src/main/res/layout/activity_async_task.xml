@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.AsyncTaskActivity">
+
+    <EditText
+        android:id="@+id/async_task_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="please input the task number"/>
+    <Button
+        android:id="@+id/async_task_execute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="execute"/>
+    <Button
+        android:id="@+id/async_task_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cancel"/>
+    <ProgressBar
+        android:id="@+id/async_task_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:max="100"
+        />
+
+</LinearLayout>

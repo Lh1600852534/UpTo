@@ -17,8 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NotificationJumpActivity"
-            android:parentActivityName=".activity.MainActivity"/>
+        <activity
+            android:name=".activity.NotificationJumpActivity"
+            android:parentActivityName=".activity.MainActivity" />
 
         <receiver
             android:name=".receiver.MyBoardCastReceiver"
@@ -34,10 +35,12 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="lh.cb.edu.henu.upto.YourBoardCastReceiver1"/>
-                <action android:name="lh.cb.edu.henu.upto.YourBoardCastReceiver2"/>
+                <action android:name="lh.cb.edu.henu.upto.YourBoardCastReceiver1" />
+                <action android:name="lh.cb.edu.henu.upto.YourBoardCastReceiver2" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".activity.AsyncTaskActivity"/>
     </application>
 
 </manifest>
