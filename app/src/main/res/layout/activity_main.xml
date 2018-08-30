@@ -9,6 +9,11 @@
     tools:context="lh.cn.edu.henu.upto.activity.MainActivity">
 
     <Button
+       android:id="@+id/btn_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"/>
+    <Button
         android:id="@+id/send_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,5 +28,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/asyncTask"/>
+    <Button
+        android:id="@+id/start_bind_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BindService"/>
+    <Button
+        android:id="@+id/unbind_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="unBindService"/>
+    <Button
+        android:id="@+id/test_bind_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test bindService"/>
 
 </LinearLayout>
