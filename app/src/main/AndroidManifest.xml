@@ -40,7 +40,28 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.AsyncTaskActivity"/>
+        <activity android:name=".activity.AsyncTaskActivity" />
+
+        <service
+            android:name=".service.MyBindService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.Main2Activity" />
+
+        <service
+            android:name=".service.MyIntentService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".BookManagerService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.AidlActivity" />
+        <activity android:name=".activity.RecyclerActivity">
+
+        </activity>
     </application>
 
 </manifest>

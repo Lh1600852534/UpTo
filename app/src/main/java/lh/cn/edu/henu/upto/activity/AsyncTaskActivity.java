@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import lh.cn.edu.henu.upto.R;
+import lh.cn.edu.henu.upto.util.ThreadUtil;
 
 public class AsyncTaskActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -24,6 +25,8 @@ public class AsyncTaskActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_async_task);
 
         initView();
+        //ThreadUtil threadUtil = new ThreadUtil();
+        //threadUtil.bindContext(this);
 
     }
 
