@@ -8,6 +8,7 @@ import android.app.TaskStackBuilder;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -30,6 +31,7 @@ import lh.cn.edu.henu.upto.R;
 import lh.cn.edu.henu.upto.UpTo;
 import lh.cn.edu.henu.upto.notification.NotificationChannelFactory;
 import lh.cn.edu.henu.upto.receiver.MyBoardCastReceiver;
+import lh.cn.edu.henu.upto.receiver.SystemBoardCastReceiver;
 import lh.cn.edu.henu.upto.service.MyBindService;
 import lh.cn.edu.henu.upto.service.MyIntentService;
 import lh.cn.edu.henu.upto.util.ThreadUtil;
@@ -49,7 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ServiceConnection serviceConnection;
     private MyBindService myBindService;
 
-
+    MyBoardCastReceiver myBoardCastReceiver;
+    SystemBoardCastReceiver mySystemBoardCastReceiver;
     ThreadUtil threadUtil;
 
     @Override
@@ -59,6 +62,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         intServiceConn();
         threadUtil = new ThreadUtil();
+        myBoardCastReceiver = new MyBoardCastReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("lh.cb.edu.henu.upto.YourBoardCastReceiver1");
+        registerReceiver(myBoardCastReceiver, intentFilter);
+
+        mySystemBoardCastReceiver = new SystemBoardCastReceiver();
+        IntentFilter intentFilter1 = new IntentFilter();
+        intentFilter1.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(mySystemBoardCastReceiver, intentFilter1);
     }
 
     @Override
@@ -228,9 +240,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
-
-
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(myBoardCastReceiver);
+    }
 }

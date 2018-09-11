@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="lh.cn.edu.henu.upto">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".UpTo"
         android:allowBackup="true"
@@ -10,13 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".activity.NotificationJumpActivity"
             android:parentActivityName=".activity.MainActivity" />
@@ -47,19 +43,51 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.Main2Activity" />
+        <activity android:name=".activity.Main2Activity">
+
+        </activity>
 
         <service
             android:name=".service.MyIntentService"
             android:enabled="true"
             android:exported="true" />
-        <service
-            android:name=".BookManagerService"
-            android:enabled="true"
-            android:exported="true" />
 
         <activity android:name=".activity.AidlActivity" />
-        <activity android:name=".activity.RecyclerActivity">
+        <activity android:name=".activity.RecyclerActivity" />
+        <activity android:name=".net.NetActivity">
+
+        </activity>
+
+        <receiver
+            android:name=".receiver.NetConnectReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".recycler.RecyclerViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".aidl.RemoteService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="lh.cn.edu.upto.remote" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".aidl.ClientActivity">
 
         </activity>
     </application>

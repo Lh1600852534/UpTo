@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".net.NetActivity">
+    <Button
+        android:id="@+id/retrofit_jin_san_ci_ba"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="金山词霸"
+        />
+    <Button
+        android:id="@+id/retrofit_wang_yi_you_dao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="网易有道翻译"/>
+
+</LinearLayout>
