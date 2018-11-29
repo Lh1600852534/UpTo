@@ -21,6 +21,9 @@ public class ChatActivity extends AppCompatActivity {
         pieView.setPieDataArrayList(pieDataArrayList);
     }
 
+    /**
+     * 初始饼状图数据
+     */
     private void initPieData(){
 
         PieData pieData1 = new PieData("红",1);
