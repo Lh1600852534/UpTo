@@ -158,25 +158,19 @@ public class PieView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.i("pieView", "onDraw1: ");
         float currentAngle = 0; //当前弧度
         if(pieDataArrayList == null) return;
         updatePieDate(pieDataArrayList);
         initPaint();
 
-        Log.i("pieView", "onDraw2:  list.size" + pieDataArrayList.size());
         for (PieData pieData : pieDataArrayList) {
 
-            Log.i("pieView", "onDraw3: " + pieData.getName() + " " + pieData.getAngle());
             mPaint.setColor(colors.get(pieData.getColor()));
             RectF rectF = new RectF(arcLeft, arcTop, arcRight, arcBottom);
             canvas.drawArc(rectF, currentAngle, pieData.getAngle(), true, mPaint);
             currentAngle += pieData.getAngle();
         }
 
-/*        mPaint.setColor(0XFF880015);
-        RectF rectF = new RectF(arcLeft, arcTop, arcRight, arcBottom);
-        canvas.drawArc(rectF, currentAngle, 90, true, mPaint);*/
 
 
     }
