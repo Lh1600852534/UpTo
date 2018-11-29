@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.MainActivity">
+        </activity>
         <activity
             android:name=".activity.NotificationJumpActivity"
             android:parentActivityName=".activity.MainActivity" />
@@ -43,9 +44,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.Main2Activity">
-
-        </activity>
+        <activity android:name=".activity.Main2Activity" />
 
         <service
             android:name=".service.MyIntentService"
@@ -54,9 +53,7 @@
 
         <activity android:name=".activity.AidlActivity" />
         <activity android:name=".activity.RecyclerActivity" />
-        <activity android:name=".net.NetActivity">
-
-        </activity>
+        <activity android:name=".net.NetActivity" />
 
         <receiver
             android:name=".receiver.NetConnectReceiver"
@@ -67,13 +64,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".recycler.RecyclerViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".recycler.RecyclerViewActivity" />
 
         <service
             android:name=".aidl.RemoteService"
@@ -87,8 +78,24 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".aidl.ClientActivity">
+        <activity android:name=".aidl.ClientActivity" />
 
+        <service
+            android:name=".keepAlive.GrayService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".keepAlive.GrayService$GrayInnerService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".HandlerThread.HandlerThreadActivity" />
+        <activity android:name=".chatFrame.ChatActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

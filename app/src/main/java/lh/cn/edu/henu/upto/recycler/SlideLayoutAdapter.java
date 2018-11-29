@@ -11,19 +11,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import lh.cn.edu.henu.upto.R;
 
 public class SlideLayoutAdapter extends RecyclerView.Adapter<SlideLayoutAdapter.ViewHolder> implements View.OnClickListener {
 
     private Context context;
-    ArrayList<String> arrayList = new ArrayList<>();
+    LinkedList<String> arrayList = new LinkedList<>();
     private int position = 0;
 
     private SlideLayoutClickListener slideLayoutClickListener;
     SlideLayout slideLayout;
 
-    public SlideLayoutAdapter(Context context, ArrayList<String> arrayList) {
+    public SlideLayoutAdapter(Context context, LinkedList<String> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
@@ -34,6 +35,8 @@ public class SlideLayoutAdapter extends RecyclerView.Adapter<SlideLayoutAdapter.
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.slide_layout, parent, false);
+        SlideLayout slideLayout = (SlideLayout) view;
+        slideLayout.setSlideLayoutAdapter(this);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -66,10 +69,10 @@ public class SlideLayoutAdapter extends RecyclerView.Adapter<SlideLayoutAdapter.
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 arrayList.remove(position);
-                notifyItemRemoved(position);
-                notifyDataSetChanged();
                 slideLayout = (SlideLayout) holder.getView();
                 slideLayout.resetMenu();
+                //notifyItemRemoved(position);
+                notifyDataSetChanged();
                 //slideLayoutClickListener.onRefresh(position, slideLayout,1);
             }
         });
@@ -124,5 +127,17 @@ public class SlideLayoutAdapter extends RecyclerView.Adapter<SlideLayoutAdapter.
 
         void onRefresh(int position, SlideLayout view, int type);
     }
+
+
+    public SlideLayout slideLayoutListener = null;
+    public void setResetClickListener(SlideLayout slideLayout){
+        this.slideLayoutListener = slideLayout;
+    }
+
+    public void unLinkResetClickListener(){
+        this.slideLayoutListener = null;
+    }
+
+
 
 }

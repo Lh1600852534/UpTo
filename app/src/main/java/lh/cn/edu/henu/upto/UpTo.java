@@ -15,6 +15,8 @@ public class UpTo extends Application {
     public static final String NOTIFICATION_CHANNEL_ID_IMMEDIATELY = "notification_channel_id_immediately";
     public static final String NOTIFICATION_CHANNEL_ID_DELAY = "notification_channel_id_delay";
 
+    public final static int GRAY_SERVICE_ID = 1001;
+
 
     @Override
     public void onCreate() {

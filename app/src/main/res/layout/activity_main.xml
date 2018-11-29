@@ -43,8 +43,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="test bindService"/>
-    <lh.cn.edu.henu.upto.recycler.SlideLayout
+<!--    <lh.cn.edu.henu.upto.recycler.SlideLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"/>-->
+      <Button
+          android:id="@+id/keep_alive_process"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="process keep alive"/>
 
 </LinearLayout>

@@ -1,1 +1,8 @@
 The project help me study Android, Including unit-test, pendingIntent and more, I will verify my some thinking and test in here
+
+android基础知识模块demo 集合
+
+社交类app
+
+*  支持视频通信  自己定义相关通行协议
+*  实现后台进程保活

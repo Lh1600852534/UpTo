@@ -14,9 +14,7 @@ import android.widget.Scroller;
 
 import javax.security.auth.login.LoginException;
 
-import lh.cn.edu.henu.upto.R;
-
-public class SlideLayout extends FrameLayout {
+public class SlideLayout extends FrameLayout{
 
     private View mContentView;
     private View mMenuView;
@@ -34,6 +32,8 @@ public class SlideLayout extends FrameLayout {
     private float downY;
 
     private float disX;
+
+    private SlideLayoutAdapter slideLayoutAdapter;
 
     public SlideLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -89,12 +89,6 @@ public class SlideLayout extends FrameLayout {
 
                 scrollTo((int)disX, 0);
 
-                final float moveX = Math.abs(x - startY);
-                final float moveY = Math.abs(y - startY);
-                if(moveX > moveY && moveX > 10f){
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-
                 startX = x;
                 startY = y;
                 break;
@@ -122,7 +116,13 @@ public class SlideLayout extends FrameLayout {
                 downY = y;
                 break;
             case MotionEvent.ACTION_MOVE:
+
                 final float moveX = Math.abs(x - downX);
+                final float moveY = Math.abs(y - downY);
+                if(moveX > moveY && moveX > 10f){
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+
                 if(moveX > 10f){
                     intercept = true;
                 }
@@ -146,11 +146,16 @@ public class SlideLayout extends FrameLayout {
     public final void openMenu(){
         mScroller.startScroll(getScrollX(), getScrollY(), mMenuWidth - getScrollX(), 0);
         invalidate();
+        if(slideLayoutAdapter.slideLayoutListener != null){
+            slideLayoutAdapter.slideLayoutListener.resetMenu();
+        }
+        slideLayoutAdapter.setResetClickListener(this);
     }
 
     public final void closeMenu(){
         mScroller.startScroll(getScrollX(), getScrollY(), 0 - getScrollX(), 0);
         invalidate();
+        slideLayoutAdapter.unLinkResetClickListener();
     }
 
     /**
@@ -161,7 +166,7 @@ public class SlideLayout extends FrameLayout {
         scrollTo(0, 0);
     }
 
-
-
-
+    public void setSlideLayoutAdapter(SlideLayoutAdapter slideLayoutAdapter){
+        this.slideLayoutAdapter = slideLayoutAdapter;
+    }
 }

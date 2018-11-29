@@ -9,12 +9,14 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import lh.cn.edu.henu.upto.R;
 
 public class RecyclerViewActivity extends AppCompatActivity implements SlideLayoutAdapter.SlideLayoutClickListener {
 
     RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements SlideLayo
         recyclerView = (RecyclerView)findViewById(R.id.recycler_slide);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        ArrayList<String> arrayList = new ArrayList<String>();
+        LinkedList<String> arrayList = new LinkedList<>();
         for(int i = 0; i < 20; i++){
             arrayList.add(i + "");
         }

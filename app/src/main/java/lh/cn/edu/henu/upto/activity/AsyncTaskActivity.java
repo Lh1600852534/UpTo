@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import lh.cn.edu.henu.upto.R;
-import lh.cn.edu.henu.upto.util.ThreadUtil;
+
 
 public class AsyncTaskActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -48,6 +48,7 @@ public class AsyncTaskActivity extends AppCompatActivity implements View.OnClick
             case R.id.async_task_execute:
                 ProgressAsyncTask progressAsyncTask = new ProgressAsyncTask();
                 progressAsyncTask.execute(Integer.parseInt(mEditText.getText().toString()));
+                progressAsyncTask.onCancelled();
                 mProgressBar.setMax(Integer.parseInt(mEditText.getText().toString()));
                 break;
             case R.id.async_task_cancel:
@@ -57,7 +58,7 @@ public class AsyncTaskActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private class ProgressAsyncTask extends AsyncTask<Integer,Integer,String>{
+    private static class ProgressAsyncTask extends AsyncTask<Integer,Integer,String>{
 
         @Override
         protected String doInBackground(Integer... integers) {
@@ -71,6 +72,9 @@ public class AsyncTaskActivity extends AppCompatActivity implements View.OnClick
                 }
                 publishProgress(i);
             }
+/*            while (true){
+                Log.i("ttss", "doInBackground: doInBackground");
+            }*/
             return "gg";
         }
 
@@ -78,7 +82,8 @@ public class AsyncTaskActivity extends AppCompatActivity implements View.OnClick
         protected void onProgressUpdate(Integer... values) {
             Log.i("asyncTask", "onProgressUpdate, Thread name: " + Thread.currentThread().getName());
             super.onProgressUpdate(values);
-            mProgressBar.setProgress(values[0]);
+
+            //mProgressBar.setProgress(values[0]);
         }
 
         @Override

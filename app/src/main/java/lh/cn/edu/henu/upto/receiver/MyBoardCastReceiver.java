@@ -44,7 +44,6 @@ public class MyBoardCastReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context, UpTo.NOTIFICATION_CHANNEL_ID_DELAY)
                         .setContentText("Hello World")
-                        .setSmallIcon(R.drawable.ic_launcher_foreground)
                         .setContentTitle("UpTo")
                         .setChannelId(UpTo.NOTIFICATION_CHANNEL_ID_DELAY);
 

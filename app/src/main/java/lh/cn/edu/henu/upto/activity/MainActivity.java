@@ -29,6 +29,7 @@ import java.util.Calendar;
 
 import lh.cn.edu.henu.upto.R;
 import lh.cn.edu.henu.upto.UpTo;
+import lh.cn.edu.henu.upto.keepAlive.GrayService;
 import lh.cn.edu.henu.upto.notification.NotificationChannelFactory;
 import lh.cn.edu.henu.upto.receiver.MyBoardCastReceiver;
 import lh.cn.edu.henu.upto.receiver.SystemBoardCastReceiver;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnUnBindService;
     private Button testBindService;
     private Button testBtn;
+    private Button btnKeepAlive;
     private ServiceConnection serviceConnection;
     private MyBindService myBindService;
 
@@ -115,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testBindService.setOnClickListener(this);
         testBtn = (Button)findViewById(R.id.btn_test);
         testBtn.setOnClickListener(this);
+        btnKeepAlive = (Button)findViewById(R.id.keep_alive_process);
+        btnKeepAlive.setOnClickListener(this);
 
     }
 
@@ -152,6 +156,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //new testThread().start();
                 Intent intent1 = new Intent(this, MyIntentService.class); //测试IntentService
                 startService(intent1);
+            case R.id.keep_alive_process:
+                Intent intent2 = new Intent(this, GrayService.class);
+                startService(intent2);
+                //startForegroundService(intent2);
             default:
                 break;
         }
@@ -222,7 +230,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, UpTo.NOTIFICATION_CHANNEL_ID_IMMEDIATELY)
                         .setContentText("Hello World")
-                        .setSmallIcon(R.drawable.ic_launcher_foreground)
                         .setContentTitle("UpTo")
                         .setChannelId(UpTo.NOTIFICATION_CHANNEL_ID_IMMEDIATELY);
 
