@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Random;
 
-import lh.cn.edu.henu.upto.chatFrame.PieData;
+import lh.cn.edu.henu.upto.viewFrame.pie.PieData;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package lh.cn.edu.henu.upto.chatFrame;
+package lh.cn.edu.henu.upto.viewFrame;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 import lh.cn.edu.henu.upto.R;
+import lh.cn.edu.henu.upto.viewFrame.pie.PieData;
+import lh.cn.edu.henu.upto.viewFrame.pie.PieView;
 
 public class ChatActivity extends AppCompatActivity {
 

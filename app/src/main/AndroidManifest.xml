@@ -90,7 +90,7 @@
             android:exported="true" />
 
         <activity android:name=".HandlerThread.HandlerThreadActivity" />
-        <activity android:name=".chatFrame.ChatActivity">
+        <activity android:name=".viewFrame.ChatActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

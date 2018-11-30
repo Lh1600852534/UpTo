@@ -1,8 +1,6 @@
-package lh.cn.edu.henu.upto.chatFrame;
+package lh.cn.edu.henu.upto.viewFrame;
 
 import org.junit.Before;
-
-import static org.junit.Assert.*;
 
 public class PieViewTest {
 

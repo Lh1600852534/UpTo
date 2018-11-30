@@ -1,4 +1,4 @@
-package lh.cn.edu.henu.upto.chatFrame;
+package lh.cn.edu.henu.upto.viewFrame.pie;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,11 +6,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import lh.cn.edu.henu.upto.viewFrame.pie.PieData;
 
 public class PieView extends View {
 

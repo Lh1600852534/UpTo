@@ -1,4 +1,4 @@
-package lh.cn.edu.henu.upto.chatFrame;
+package lh.cn.edu.henu.upto.viewFrame.pie;
 
 public class PieData {
 
